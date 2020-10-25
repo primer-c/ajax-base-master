@@ -1,5 +1,5 @@
 ---
-title: Ajax异步请求案例之一
+title: Ajax异步请求案例-基本代码
 date: 2020-10-12
 categories: JavaScript
 ---
@@ -10,7 +10,7 @@ categories: JavaScript
 
    ![页面](https://s1.ax1x.com/2020/10/16/0bJuKf.png)
 
-2. 点击B按钮，通过Ajax从后端接收到图片的`src`,渲染新的图片，页面不发生刷新
+2. 点击 B 按钮，通过 Ajax 从后端接收到图片的`src`,渲染新的图片，页面不发生刷新
 
    ![Ajax更换图片](https://s1.ax1x.com/2020/10/16/0bJmxP.png)
 
@@ -20,7 +20,7 @@ categories: JavaScript
 
    - 创建目录： `ajax-base-master` / `public`
 
-   - 初始化项目`root`:  
+   - 初始化项目`root`:
 
      ```bash
      npm install express
@@ -37,11 +37,11 @@ categories: JavaScript
      const app = express()
      //5. 静态资源访问服务功能
      app.use(express.static(path.join(__dirname, 'public')))
-     
+
      //3. 设置端口
      const PORT = process.env.NODE_ENV || 3000
      //4. 监听端口
-     const server = app.listen(PORT,()=>{
+     const server = app.listen(PORT, () => {
        console.log(`Server running at port: http://localhost:${PORT}...`)
      })
      ```
@@ -59,8 +59,8 @@ categories: JavaScript
    - 配置路由
 
      ```js
-     app.get('/get', async(req,res) => {
-       await res.send("落霞与孤鹜齐飞 秋水共长天一色")
+     app.get('/get', async (req, res) => {
+       await res.send('落霞与孤鹜齐飞 秋水共长天一色')
      })
      ```
 
@@ -73,28 +73,38 @@ categories: JavaScript
      ```html
      <!DOCTYPE html>
      <html lang="en">
-     <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Demo for ajax base master</title>
-       <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
-       <link rel="stylesheet" href="css/index.css">
-     </head>
-     <body>
-       <div class="card">
-         <h2>Hello World!</h2>
-         <img src="imgs/photo.jpg" alt="photo">
-         <ul>
-           <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis amet consequatur eligendi, autem molestias nostrum ratione animi temporibus beatae quo expedita accusamus delectus sapiente distinctio! Quibusdam cumque numquam unde dolorem.</li>
-           <li><button></button></li>
-         </ul>
-       </div>
-       <script src="js/index.js"></script>
-     </body>
+       <head>
+         <meta charset="UTF-8" />
+         <meta
+           name="viewport"
+           content="width=device-width, initial-scale=1.0"
+         />
+         <title>Demo for ajax base master</title>
+         <link
+           rel="shortcut icon"
+           href="imgs/favicon.ico"
+           type="image/x-icon"
+         />
+         <link rel="stylesheet" href="css/index.css" />
+       </head>
+       <body>
+         <div class="card">
+           <h2>Hello World!</h2>
+           <img src="imgs/photo.jpg" alt="photo" />
+           <ul>
+             <li>
+               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+               Perspiciatis amet consequatur eligendi, autem molestias nostrum
+               ratione animi temporibus beatae quo expedita accusamus delectus
+               sapiente distinctio! Quibusdam cumque numquam unde dolorem.
+             </li>
+             <li><button></button></li>
+           </ul>
+         </div>
+         <script src="js/index.js"></script>
+       </body>
      </html>
      ```
-
-     
 
    - 创建静态文件： `less/indexless`，保存时自动生成`css/index.css`
 
@@ -112,10 +122,10 @@ categories: JavaScript
      body {
        min-height: 100vh;
        .center;
-       .card{
+       .card {
          width: 280px;
          padding: 15px;
-         box-shadow: 1px 2px 4px rgba(0,0,0,.5);
+         box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
          h2 {
            text-align: center;
            line-height: 60px;
@@ -127,7 +137,7 @@ categories: JavaScript
          ul {
            padding: 20px 0;
            li {
-             line-height: 20px; 
+             line-height: 20px;
              &:nth-of-type(2) {
                float: right;
                margin: 10px auto 0;
@@ -140,9 +150,9 @@ categories: JavaScript
                  border: 0px;
                  font-size: 20px;
                  color: #fff;
-                 box-shadow: 1px 2px 6px rgba(0,0,0.5);
+                 box-shadow: 1px 2px 6px rgba(0, 0, 0.5);
                }
-             }     
+             }
            }
          }
        }
@@ -156,81 +166,79 @@ categories: JavaScript
      1. 对象创建
 
         ```js
-     let xml;
-        if(XMLHttpRequest) {
+        let xml
+        if (XMLHttpRequest) {
           xml = new XMLHttpRequest()
-        }else{
+        } else {
           xml = new ActiveXObject('Mircrosoft.XMLHTTP')
         }
         ```
-   
+
      2. 设置请求方式
 
         ```js
-        xml.open("GET",url,true)
+        xml.open('GET', url, true)
         ```
-   
+
      3. 调用回调函数
-   
+
         ```js
-        xml.onreadystatechange = function(){
-          if(xml.readyState == 4 && xml.status == 200){}
+        xml.onreadystatechange = function () {
+          if (xml.readyState == 4 && xml.status == 200) {
+          }
         }
         ```
-   
+
      4. 发送请求
-     
+
         ```js
-      xml.send(null)
+        xml.send(null)
         ```
 
    - `index.js`
 
      ```js
-      // 5. 设置访问路由
-     const url = "http://localhost:3000/get"
-     
+     // 5. 设置访问路由
+     const url = 'http://localhost:3000/get'
+
      // 6. 获取元素
      const img = document.querySelector('img')
      const btn = document.querySelector('button')
-    
+
      // 7. 事件监听
-     btn.addEventListener("click",function(){
-     
+     btn.addEventListener('click', function () {
        // 1. 创建代理对象
-       let xhr;
-       if(window.XMLHttpRequest) {
+       let xhr
+       if (window.XMLHttpRequest) {
          xhr = new XMLHttpRequest()
-       }else{
+       } else {
          xhr = new ActiveXObject('Mircrosoft.XMLHTTP')
        }
        // 2. 设置请求方式
-       xhr.open("GET",url,true)
-     
+       xhr.open('GET', url, true)
+
        // 3. 发送请求
        xhr.send(null)
-       
+
        // 4. 获取服务端发给客户端的数据
-       xhr.onreadystatechange = function(){
-         if(xhr.readyState == 4 && xhr.status == 200){
+       xhr.onreadystatechange = function () {
+         if (xhr.readyState == 4 && xhr.status == 200) {
            img.src = xhr.responseText
          }
        }
      })
      ```
-   
-     
-   
+
    - 浏览器`url`： `http://localhost:3000`
    - 点击按钮，更换图片
    - 观察`url`并没有改变；
 
-#### 3.  参考文档
+#### 3. 参考文档
 
-1. 关于Ajax基本原理的`TypeScript`版本介绍
+1. 关于 Ajax 基本原理的`TypeScript`版本介绍
 
    [参考文档](https://yuanmin650304.github.io/2020/10/15/JavaScript/JS/Ajax-base-for-Typescript/)
 
-2. Ajax异步请求案例： `JSON.parse()`解析
+2. Ajax 异步请求案例： `JSON.parse()`解析
 
    [参考文档]()
